@@ -75,4 +75,3 @@ if st.button("🚀 Start Onboarding"):
 
 # Footer
 st.markdown("---")
-st.caption("Built by Rakesh | Agentic AI Hackathon 🚀")
