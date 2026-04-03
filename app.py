@@ -4,45 +4,67 @@ from agent import agent
 # Page config
 st.set_page_config(page_title="TaskPilot AI", page_icon="🚀", layout="centered")
 
-# Custom UI styling
+# 🎨 Custom Styling
 st.markdown("""
 <style>
-.main {
+body {
     background-color: #0f172a;
 }
-h1, h2, h3 {
-    color: #38bdf8;
+.main {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    padding: 20px;
+    border-radius: 15px;
+}
+h1 {
     text-align: center;
+    color: #38bdf8;
+}
+h2 {
+    text-align: center;
+    color: #e2e8f0;
 }
 .stTextInput input {
     background-color: #1e293b;
     color: white;
+    border-radius: 8px;
 }
 .stButton>button {
-    background-color: #38bdf8;
-    color: black;
-    border-radius: 10px;
+    background: linear-gradient(90deg, #38bdf8, #6366f1);
+    color: white;
+    border-radius: 12px;
     height: 3em;
     width: 100%;
     font-size: 18px;
+    border: none;
+}
+.stButton>button:hover {
+    background: linear-gradient(90deg, #0ea5e9, #4f46e5);
 }
 </style>
 """, unsafe_allow_html=True)
 
-# Title
+# 🧠 Header
 st.title("🚀 TaskPilot AI")
-st.subheader("🤖 Client Onboarding Agent")
+st.markdown("### 🤖 Smart Client Onboarding Agent")
 
-st.write("💡 Enter client details and let the AI agent automate onboarding")
+st.markdown("💡 *Automate onboarding process using Agentic AI*")
 
-# Input fields
-brand = st.text_input("🏢 Brand Name")
-manager = st.text_input("👨‍💼 Account Manager")
-email = st.text_input("📧 Client Email")
-start_date = st.text_input("📅 Start Date")
-deliverables = st.text_input("📦 Monthly Deliverables")
+# 🧾 Form Container
+with st.container():
+    st.markdown("## 📝 Enter Client Details")
 
-# Button click
+    col1, col2 = st.columns(2)
+
+    with col1:
+        brand = st.text_input("🏢 Brand Name")
+        manager = st.text_input("👨‍💼 Account Manager")
+        email = st.text_input("📧 Client Email")
+
+    with col2:
+        start_date = st.text_input("📅 Start Date")
+        deliverables = st.text_input("📦 Monthly Deliverables")
+
+# 🚀 Button
 if st.button("🚀 Start Onboarding"):
 
     if brand and manager and email and start_date and deliverables:
@@ -55,23 +77,23 @@ if st.button("🚀 Start Onboarding"):
             "deliverables": deliverables
         }
 
-        with st.spinner("🤖 Agent is processing onboarding..."):
+        with st.spinner("🤖 AI Agent is working..."):
             steps, result = agent(data)
 
-        # Success message
-        st.success("✅ Onboarding Completed Successfully!")
+        # ✅ Success
+        st.success("🎉 Onboarding Completed Successfully!")
 
-        # Agent thinking
-        st.subheader("🧠 Agent Thinking")
-        for step in steps:
-            st.info(step)
+        # 🧠 Expandable sections
+        with st.expander("🧠 View Agent Steps"):
+            for step in steps:
+                st.write("✔", step)
 
-        # Result output
-        st.subheader("📌 Final Output")
-        st.write(result)
+        with st.expander("📌 Final Result"):
+            st.write(result)
 
     else:
-        st.warning("⚠️ Please fill all fields before proceeding")
+        st.error("⚠️ Please fill all fields!")
 
-# Footer
+# 🔻 Footer
 st.markdown("---")
+st.caption("💻 Built by Team AVON | Agentic AI Hackathon 🚀")
