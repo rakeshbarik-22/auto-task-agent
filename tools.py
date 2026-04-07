@@ -1,7 +1,13 @@
 import google.generativeai as genai
 
 # Replace with your actual API key
-genai.configure(api_key="Your API key") 
+from dotenv import load_dotenv
+import os
+import google.generativeai as genai
+
+load_dotenv()
+
+genai.configure(api_key=os.getenv("API_KEY"))
 
 # Use the 2026 model name to fix the 404 error
 model = genai.GenerativeModel("gemini-3-flash-preview")
