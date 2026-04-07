@@ -1,10 +1,8 @@
 import streamlit as st
 from agent import agent
 
-# Page config
 st.set_page_config(page_title="TaskPilot AI", page_icon="🚀", layout="centered")
 
-# 🎨 Custom Styling
 st.markdown("""
 <style>
 body {
@@ -43,13 +41,11 @@ h2 {
 </style>
 """, unsafe_allow_html=True)
 
-# 🧠 Header
 st.title("🚀 TaskPilot AI")
 st.markdown("### 🤖 Smart Client Onboarding Agent")
 
 st.markdown("💡 *Automate onboarding process using Agentic AI*")
 
-# 🧾 Form Container
 with st.container():
     st.markdown("## 📝 Enter Client Details")
 
@@ -64,7 +60,6 @@ with st.container():
         start_date = st.text_input("📅 Start Date")
         deliverables = st.text_input("📦 Monthly Deliverables")
 
-# 🚀 Button
 if st.button("🚀 Start Onboarding"):
 
     if brand and manager and email and start_date and deliverables:
@@ -80,10 +75,8 @@ if st.button("🚀 Start Onboarding"):
         with st.spinner("🤖 AI Agent is working..."):
             steps, result = agent(data)
 
-        # ✅ Success
         st.success("🎉 Onboarding Completed Successfully!")
 
-        # 🧠 Expandable sections
         with st.expander("🧠 View Agent Steps"):
             for step in steps:
                 st.write("✔", step)
@@ -94,6 +87,5 @@ if st.button("🚀 Start Onboarding"):
     else:
         st.error("⚠️ Please fill all fields!")
 
-# 🔻 Footer
 st.markdown("---")
 st.caption("💻 Built by Team AVON | Agentic AI Hackathon 🚀")
